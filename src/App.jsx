@@ -1,21 +1,26 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 // import "./App.css";
 import { fetchUserData } from "./store/action";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import UserData from "./component/UserData";
+import UserForm from "./component/UserForm";
 
 function App() {
-  // const userData = useSelector((state) => state.reducer);
+  const result = useSelector((state) => state.result);
+
   const dispatch = useDispatch();
 
-  // console.log(userData);
-
   useEffect(() => {
-    console.log("hello");
     dispatch(fetchUserData());
   }, []);
 
-  return <>{/* <div>{userData}</div> */}</>;
+  return (
+    <>
+      <UserForm />
+      <UserData contacts={result} />
+    </>
+  );
 }
 
 export default App;
