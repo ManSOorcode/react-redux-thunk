@@ -24,7 +24,8 @@ export const fetchUserData = () => {
   return async (dispatch) => {
     fetchInit();
     try {
-      const response = await fetch("https://dummyjson.com/products");
+      // const response = await fetch("https://dummyjson.com/products");
+      const response = await fetch("http://localhost:3000/contacts");
       const data = await response.json();
       console.log(data);
       dispatch(fetchSucess(data));
