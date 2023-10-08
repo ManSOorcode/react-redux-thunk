@@ -9,6 +9,11 @@ const intialState = {
 export const userReducer = (state = intialState, action) => {
   console.log(action, state);
   switch (action.type) {
+    case actionType.FORM_USER_CONTACTS:
+      return (state = {
+        ...state,
+        result: [...state.result, action.payload],
+      });
     case actionType.FETCH_DATA_INIT:
       return (state = {
         ...state,

@@ -19,6 +19,13 @@ export const fetchFailure = (error) => {
   };
 };
 
+export const formUserContacts = (data) => {
+  return {
+    type: actionTypes.FORM_USER_CONTACTS,
+    payload: data,
+  };
+};
+
 //https://mansoor-contact-app-default-rtdb.firebaseio.com/name.json
 export const fetchUserData = () => {
   return async (dispatch) => {
