@@ -25,7 +25,7 @@ export const fetchUserData = () => {
   return async (dispatch) => {
     dispatch(fetchInit());
     try {
-      const response = await fetch("http://localhost:3000/contacts.json");
+      const response = await fetch("http://localhost:3000/contacts");
       const data = await response.json();
       console.log(data);
       dispatch(fetchSucess(data));

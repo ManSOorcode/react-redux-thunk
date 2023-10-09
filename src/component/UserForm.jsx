@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { formUserContacts, postUserData } from "../store/action";
+import { Link, useNavigate } from "react-router-dom";
 
 const UserForm = () => {
   const [userContact, setUserContact] = useState({
     name: "",
     number: "",
   });
+
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -19,12 +22,17 @@ const UserForm = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     // console.log(userContact);
-    dispatch(formUserContacts(userContact));
-    dispatch(postUserData(userContact));
+    // dispatch(formUserContacts(userContact));
+
     setUserContact({
       name: "",
       number: "",
     });
+
+    if (!userContact.name === "" && !userContact.number === "") {
+      dispatch(postUserData(userContact));
+      navigate("data");
+    }
   };
 
   //   useEffect(() => {
@@ -32,25 +40,30 @@ const UserForm = () => {
   // dispatch(postUserData(userContact));
   //   }, [userContact, dispatch]);
   return (
-    <form onSubmit={submitHandler}>
-      <div>
-        <label>Name</label>
-        <input
-          value={userContact.name}
-          type="text"
-          placeholder="Type your Name"
-          onChange={(e) => changehandler("name", e.target.value)}
-        />
-        <label>Number</label>
-        <input
-          value={userContact.number}
-          type="number"
-          placeholder="Type your Number"
-          onChange={(e) => changehandler("number", e.target.value)}
-        />
-      </div>
-      <button>Click</button>
-    </form>
+    <>
+      <li>
+        <Link to="/">To Dashboard</Link>
+      </li>{" "}
+      <form onSubmit={submitHandler}>
+        <div>
+          <label>Name</label>
+          <input
+            value={userContact.name}
+            type="text"
+            placeholder="Type your Name"
+            onChange={(e) => changehandler("name", e.target.value)}
+          />
+          <label>Number</label>
+          <input
+            value={userContact.number}
+            type="number"
+            placeholder="Type your Number"
+            onChange={(e) => changehandler("number", e.target.value)}
+          />
+        </div>
+        <button>Click</button>
+      </form>
+    </>
   );
 };
 
