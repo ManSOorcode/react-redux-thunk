@@ -7,13 +7,13 @@ const intialState = {
 };
 
 export const userReducer = (state = intialState, action) => {
-  console.log(action, state);
+  console.log(action.payloade, state);
   switch (action.type) {
-    case actionType.FORM_USER_CONTACTS:
-      return (state = {
-        ...state,
-        result: [...state.result, action.payload],
-      });
+    // case actionType.FORM_USER_CONTACTS:
+    //   return (state = {
+    //     ...state,
+    //     result: [...state.result, action.payload],
+    //   });
     case actionType.FETCH_DATA_INIT:
       return (state = {
         ...state,
@@ -26,6 +26,24 @@ export const userReducer = (state = intialState, action) => {
         isLoading: false,
       });
     case actionType.FETCH_DATA_FAILURE:
+      return (state = {
+        ...state,
+        isLoading: false,
+        error: action.error,
+      });
+
+    case actionType.POST_DATA_INIT:
+      return (state = {
+        ...state,
+        isLoading: true,
+      });
+    case actionType.POST_DATA_SUCCESS:
+      return (state = {
+        ...state,
+        result: [...state.result, action.payload],
+        isLoading: false,
+      });
+    case actionType.POST_DATA_FAILURE:
       return (state = {
         ...state,
         isLoading: false,

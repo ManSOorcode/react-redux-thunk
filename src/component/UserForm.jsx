@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { formUserContacts } from "../store/action";
+import { formUserContacts, postUserData } from "../store/action";
 
 const UserForm = () => {
   const [userContact, setUserContact] = useState({
@@ -20,7 +20,17 @@ const UserForm = () => {
     e.preventDefault();
     // console.log(userContact);
     dispatch(formUserContacts(userContact));
+    dispatch(postUserData(userContact));
+    setUserContact({
+      name: "",
+      number: "",
+    });
   };
+
+  //   useEffect(() => {
+  //     console.log(JSON.stringify(userContact));
+  // dispatch(postUserData(userContact));
+  //   }, [userContact, dispatch]);
   return (
     <form onSubmit={submitHandler}>
       <div>

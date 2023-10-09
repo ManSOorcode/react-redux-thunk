@@ -11,9 +11,11 @@ function App() {
 
   const dispatch = useDispatch();
 
+  console.log(result);
+
   useEffect(() => {
     dispatch(fetchUserData());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
