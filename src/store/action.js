@@ -27,7 +27,7 @@ export const fetchUserData = () => {
     try {
       const response = await fetch("http://localhost:3000/contacts");
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       dispatch(fetchSucess(data));
     } catch (error) {
       dispatch(fetchFailure(error));
@@ -70,7 +70,7 @@ export const postUserData = (contacts) => {
       });
       const data = await response.json();
 
-      console.log(data.response.json());
+      // console.log(data.response.json());
       // console.log(data);
       dispatch(postSucess(data));
     } catch (error) {

@@ -7,7 +7,7 @@ const intialState = {
 };
 
 export const userReducer = (state = intialState, action) => {
-  console.log(action.payloade, state);
+  // console.log(action.payloade, state);
   switch (action.type) {
     // case actionType.FORM_USER_CONTACTS:
     //   return (state = {

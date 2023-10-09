@@ -15,7 +15,7 @@ function App() {
 
   const dispatch = useDispatch();
 
-  console.log(result);
+  // console.log(result);
 
   useEffect(() => {
     dispatch(fetchUserData());
