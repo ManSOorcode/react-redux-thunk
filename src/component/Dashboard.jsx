@@ -1,10 +1,9 @@
-import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   return (
     <div>
-      <h1>Dashboard</h1>
+      <h1>Welcome {props.name}</h1>
 
       <nav>
         <ul>

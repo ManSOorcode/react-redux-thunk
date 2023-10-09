@@ -9,9 +9,11 @@ import { Route, Routes } from "react-router-dom";
 import Dashboard from "./component/Dashboard";
 import Login from "./component/login/Login";
 import Singup from "./component/signup/Signup";
+import { auth } from "./component/auth/firebaseAuth";
 
 function App() {
   const result = useSelector((state) => state.result);
+  const [userName, setuserName] = useState("");
 
   const dispatch = useDispatch();
 
@@ -19,6 +21,13 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchUserData());
+
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) setuserName(user.displayName);
+      else setuserName("");
+    });
+
+    return () => unsubscribe();
   }, [dispatch]);
 
   // return (
@@ -30,7 +39,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Dashboard />} />
+      <Route path="/" element={<Dashboard name={userName} />} />
       <Route path="login" element={<Login />} />
       <Route path="singup" element={<Singup />} />
       <Route path="login/form" element={<UserForm />} />
