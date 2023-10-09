@@ -1,16 +1,6 @@
 {
   "contacts": [
     {
-      "id": 1,
-      "name": "Jhon",
-      "number": "8827364590"
-    },
-    {
-      "id": 2,
-      "name": "Mosh",
-      "number": "0002345678"
-    },
-    {
       "id": 3,
       "name": "Jonas",
       "number": "8023456122"
@@ -19,6 +9,31 @@
       "id": 4,
       "name": "Isabela",
       "number": "345621324"
+    },
+    {
+      "name": "money D dragon",
+      "number": "430",
+      "id": 5
+    },
+    {
+      "name": "dark saber",
+      "number": "890654321",
+      "id": 6
+    },
+    {
+      "name": "good dinasoure",
+      "number": "78906543",
+      "id": 7
+    },
+    {
+      "name": "osama",
+      "number": "654321",
+      "id": 8
+    },
+    {
+      "name": "good",
+      "number": "90",
+      "id": 9
     }
   ]
 }

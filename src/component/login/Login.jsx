@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable no-unused-vars */
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import InputControl from "../inputControl/InputControl";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -35,15 +36,10 @@ const Login = () => {
       navigate("/form");
       console.log(res);
     } catch (err) {
-      seterrorMsg(err.message);
-      // console.log(err.message);
+      console.log(err.message);
     }
   };
   return (
-    // <li>
-    //   <Link to="form">click to move on user form</Link>
-    // </li>
-
     <div>
       <div>Login</div>
       <form onSubmit={submitHandler}>
@@ -59,11 +55,11 @@ const Login = () => {
             onChange={(e) => datahandler("password", e.target)}
           />
         </div>
-        {/* <p>{errorMsg}</p> */}
+        <p>{errorMsg}</p>
         <button disabled={!formValid}>Login</button>
       </form>
       <p>
-        Don't have an account?
+        {`Don't have an account?`}
         <span>
           <Link to="/Singup">Singup</Link>
         </span>

@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { formUserContacts, postUserData } from "../store/action";
+import { postUserData } from "../store/action";
 import { Link, useNavigate } from "react-router-dom";
 
 const UserForm = () => {
@@ -21,24 +21,18 @@ const UserForm = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    // console.log(userContact);
-    // dispatch(formUserContacts(userContact));
 
     setUserContact({
       name: "",
       number: "",
     });
 
-    if (!userContact.name === "" && !userContact.number === "") {
+    if (userContact.name && userContact.number) {
       dispatch(postUserData(userContact));
-      navigate("data");
+      navigate("/data");
     }
   };
 
-  //   useEffect(() => {
-  //     console.log(JSON.stringify(userContact));
-  // dispatch(postUserData(userContact));
-  //   }, [userContact, dispatch]);
   return (
     <>
       <li>

@@ -9,11 +9,6 @@ const intialState = {
 export const userReducer = (state = intialState, action) => {
   // console.log(action.payloade, state);
   switch (action.type) {
-    // case actionType.FORM_USER_CONTACTS:
-    //   return (state = {
-    //     ...state,
-    //     result: [...state.result, action.payload],
-    //   });
     case actionType.FETCH_DATA_INIT:
       return (state = {
         ...state,
@@ -22,7 +17,7 @@ export const userReducer = (state = intialState, action) => {
     case actionType.FETCH_DATA_SUCCESS:
       return (state = {
         ...state,
-        result: [...state.result, ...action.payload],
+        result: action.payload,
         isLoading: false,
       });
     case actionType.FETCH_DATA_FAILURE:
@@ -49,6 +44,7 @@ export const userReducer = (state = intialState, action) => {
         isLoading: false,
         error: action.error,
       });
+
     default:
       return state;
   }

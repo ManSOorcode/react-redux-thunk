@@ -25,45 +25,47 @@ const Signup = () => {
   }
 
   const navigate = useNavigate();
-  const submitHandler = async (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
+    console.log("click");
+    createUserWithEmailAndPassword(
+      auth,
+      userDetails.email,
+      userDetails.password
+    )
+      .then(async (res) => {
+        console.log(res);
+        const user = res.user;
 
-    // createUserWithEmailAndPassword(
-    //   auth,
-    //   userDetails.email,
-    //   userDetails.password
-    // )
-    //   .then(async (res) => {
-    //     console.log(res);
-    //     const user = res.user;
+        //function(userDeatil, {whatdetail you want to update})
+        await updateProfile(user, { displayName: user.name });
 
-    //     //function(userDeatil, {whatdetail you want to update})
-    //     await updateProfile(user, { displayName: user.name });
+        navigate("/");
+        console.log(res);
+      })
+      .catch((err) => {
+        // seterrorMsg(err.message);
+        console.log(err.message);
+      });
+    // try {
+    //   console.log(res);
+    //   const res = await createUserWithEmailAndPassword(
+    //     auth,
+    //     userDetails.email,
+    //     userDetails.password
+    //   );
 
-    //     navigate("/");
-    //     console.log(res);
-    //   })
-    //   .catch((err) => {
-    //     seterrorMsg(err.message);
-    //     // console.log(err.message);
-    //   });
-    try {
-      const res = await createUserWithEmailAndPassword(
-        auth,
-        userDetails.email,
-        userDetails.password
-      );
-      const user = res.user;
+    //   const user = res.user;
 
-      //function(userDeatil, {whatdetail you want to update})
-      await updateProfile(user, { displayName: user.name });
+    //   //function(userDeatil, {whatdetail you want to update})
+    //   await updateProfile(user, { displayName: user.name });
 
-      navigate("/");
-      console.log(res);
-    } catch (err) {
-      seterrorMsg(err.message);
-      // console.log(err.message);
-    }
+    //   navigate("/");
+    //   console.log(res);
+    // } catch (err) {
+    //   seterrorMsg(err.message);
+    //   // console.log(err.message);
+    // }
   };
   return (
     <>
@@ -92,7 +94,9 @@ const Signup = () => {
             />
           </div>
           {/* <p>{errorMsg}</p> */}
-          <button disabled={!formValid}>singup</button>
+          <button disabled={!formValid} type="submit">
+            singup
+          </button>
         </form>
         <p>
           Already have an account?

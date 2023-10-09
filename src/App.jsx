@@ -40,10 +40,17 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Dashboard name={userName} />} />
-      <Route path="login" element={<Login />} />
-      <Route path="singup" element={<Singup />} />
-      <Route path="login/form" element={<UserForm />} />
-      <Route path="login/form/data" element={<UserData contacts={result} />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/singup" element={<Singup />} />
+      <Route
+        path="/form"
+        element={
+          <>
+            <UserForm />
+          </>
+        }
+      />
+      <Route path="/data" element={<UserData contacts={result} />} />
     </Routes>
   );
 }
