@@ -1,10 +1,13 @@
 /* eslint-disable react/prop-types */
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { deleteUserData } from "../store/action";
 
 const UserData = ({ contacts }) => {
-  //   const deletHandler = (e) => {
-  //     console.log(e.target.value);
-  //   };
+  const dispacth = useDispatch();
+  const deleteHandler = (id) => {
+    dispacth(deleteUserData(id));
+  };
   return (
     <>
       <Link to=".." relative="path">
@@ -15,7 +18,7 @@ const UserData = ({ contacts }) => {
         <div key={i}>
           <div>{contact.name}</div>
           <div>{contact.number}</div>
-          <button>Delete</button>
+          <button onClick={() => deleteHandler(contact.id)}>Delete</button>
         </div>
       ))}
     </>

@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 import * as actionTypes from "./actionTypes";
 
 //fetch action
@@ -20,7 +22,7 @@ export const fetchFailure = (error) => {
   };
 };
 
-//https://mansoor-contact-app-default-rtdb.firebaseio.com/name.json
+//mansoor-contact-app-default-rtdb.firebaseio.com/name.json
 export const fetchUserData = () => {
   return async (dispatch) => {
     dispatch(fetchInit());
@@ -71,7 +73,7 @@ export const postUserData = (contacts) => {
       const data = await response.json();
 
       // console.log(data.response.json());
-      // console.log(data);
+      console.log(data);
       dispatch(postSucess(data));
     } catch (error) {
       dispatch(postFailure(error));
@@ -79,9 +81,21 @@ export const postUserData = (contacts) => {
   };
 };
 
-export const formUserContacts = (data) => {
-  return {
-    type: actionTypes.FORM_USER_CONTACTS,
-    payload: data,
+export const deleteUserData = (id) => {
+  return async (dispatch) => {
+    dispatch(fetchInit());
+    try {
+      const response = await fetch(`http://localhost:3000/contacts/${id}`, {
+        method: "DELETE",
+      });
+      const newResponse = await fetch("http://localhost:3000/contacts");
+      const data = await newResponse.json();
+
+      console.log(data);
+
+      dispatch(fetchSucess(data));
+    } catch (error) {
+      dispatch(fetchFailure(error));
+    }
   };
 };
