@@ -10,7 +10,7 @@ const UserData = ({ contacts }) => {
   };
   return (
     <>
-      <Link to=".." relative="path">
+      <Link to="/form" relative="path">
         to form
       </Link>
 

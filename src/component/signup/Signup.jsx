@@ -36,7 +36,7 @@ const Signup = () => {
 
     // try {
     fetch(
-      `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDATc-65KdaRxfBWjCsZI1NsMqTIRFuaJM`,
+      `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDATc-65KdaRxfBWjCsZI1NsMqTIRFuaJM`,
       {
         method: "POST",
         body: JSON.stringify({
@@ -49,7 +49,9 @@ const Signup = () => {
       }
     )
       .then((res) => {
-        if (res.ok) navigate("/login");
+        if (res.ok) {
+          navigate("/login");
+        }
         console.log(res);
       })
       .catch((err) => {

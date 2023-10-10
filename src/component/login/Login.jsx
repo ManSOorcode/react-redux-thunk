@@ -8,22 +8,22 @@ import { Link, useNavigate } from "react-router-dom";
 const Login = () => {
   const emailInputHandler = useRef("");
   const passInputHandler = useRef("");
-  const [userDetails, setUserDetails] = useState({
-    email: "",
-    password: "",
-  });
+  // const [userDetails, setUserDetails] = useState({
+  //   email: "",
+  //   password: "",
+  // });
 
   // const [errorMsg, seterrorMsg] = useState("");
 
-  const datahandler = (key, value) => {
-    return setUserDetails((prev) => ({ ...prev, [key]: value }));
-  };
+  // const datahandler = (key, value) => {
+  //   return setUserDetails((prev) => ({ ...prev, [key]: value }));
+  // };
 
-  let formValid = false;
+  // let formValid = false;
 
-  if (userDetails.name && userDetails.email && userDetails.password) {
-    formValid = true;
-  }
+  // if (userDetails.name && userDetails.email && userDetails.password) {
+  //   formValid = true;
+  // }
 
   const navigate = useNavigate();
   const submitHandler = async (e) => {
@@ -39,7 +39,7 @@ const Login = () => {
 
     // try {
     fetch(
-      `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDATc-65KdaRxfBWjCsZI1NsMqTIRFuaJM`,
+      `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDATc-65KdaRxfBWjCsZI1NsMqTIRFuaJM`,
       {
         method: "POST",
         body: JSON.stringify({
