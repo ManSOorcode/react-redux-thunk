@@ -1,12 +1,14 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-unused-vars */
 import React, { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import InputControl from "../inputControl/InputControl";
+// import InputControl from "../inputControl/InputControl";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../auth/firebaseAuth";
-// import { useRef } from "./";
 
 const Signup = () => {
+  const emailInputHandler = useRef("");
+  const passInputHandler = useRef("");
   const [userDetails, setUserDetails] = useState({
     // name: "",
     email: "",
@@ -15,9 +17,9 @@ const Signup = () => {
 
   const [errorMsg, seterrorMsg] = useState("");
 
-  const datahandler = (key, value) => {
-    return setUserDetails((prev) => ({ ...prev, [key]: value }));
-  };
+  // const datahandler = (key, value) => {
+  //   return setUserDetails((prev) => ({ ...prev, [key]: value }));
+  // };
 
   let formValid = false;
 
@@ -28,8 +30,6 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const submitHandler = (e) => {
-    // const emailInput = useRef("");
-    // const passInput = useRef("");
     e.preventDefault();
 
     // createUserWithEmailAndPassword(
@@ -71,18 +71,36 @@ const Signup = () => {
     //   // console.log(err.message);
     // }
 
+    const emailInput = emailInputHandler.current.value;
+    const passInput = passInputHandler.current.value;
+
     const key = "AIzaSyDATc-65KdaRxfBWjCsZI1NsMqTIRFuaJM";
-    console.log(userDetails);
+    // console.log(userDetails);
+
+    console.log(emailInput, passInput);
+
+    // try {
     fetch(
-      `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${key}`,
+      `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDATc-65KdaRxfBWjCsZI1NsMqTIRFuaJM`,
       {
         method: "POST",
-        body: JSON.stringify(userDetails),
+        body: JSON.stringify({
+          email: emailInput,
+          password: passInput,
+        }),
         headers: {
           "Content-Type": "application/json",
         },
       }
-    ).then((res) => console.log(res.json()));
+    )
+      .then((res) => {
+        if (res.ok) navigate("/login");
+        console.log(res);
+      })
+      .catch((err) => {
+        //     // seterrorMsg(err.message);
+        console.log(err.message);
+      });
   };
 
   return (
@@ -100,23 +118,35 @@ const Signup = () => {
               label="name"
               placeholder="Write your name"
             /> */}
-            <InputControl
-              onChange={(e) => datahandler("email", e.target)}
+            {/* <InputControl
+              // onChange={(e) => datahandler("email", e.target)}
               label="email"
               placeholder="Write your email"
-              ref={inputInputHandler}
+              ref={emailInputHandler}
             />
             <InputControl
-              onChange={(e) => datahandler("password", e.target)}
+              // onChange={(e) => datahandler("password", e.target)}
               label="password"
               placeholder="type strong Password"
-              ref={passWordInputHandler}
+              ref={passInputHandler}
+            /> */}
+
+            <label>Email</label>
+            <input
+              type="text"
+              placeholder="Write your email"
+              ref={emailInputHandler}
+            />
+            <label>Password</label>
+            <input
+              type="text"
+              placeholder="type strong Password"
+              ref={passInputHandler}
             />
           </div>
           {/* <p>{errorMsg}</p> */}
-          <button disabled={!formValid} type="submit">
-            singup
-          </button>
+          {/* <button disabled={!formValid} type="submit"> */}
+          <button type="submit">singup</button>
         </form>
         <p>
           Already have an account?

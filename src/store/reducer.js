@@ -53,7 +53,6 @@ export const userReducer = (state = intialState, action) => {
     case actionType.DELETE_DATA_SUCCESS:
       return (state = {
         ...state,
-
         isLoading: false,
       });
     case actionType.DELETE_DATA_FAILURE:

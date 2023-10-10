@@ -1,11 +1,6 @@
 {
   "contacts": [
     {
-      "id": 3,
-      "name": "Jonas",
-      "number": "8023456122"
-    },
-    {
       "id": 4,
       "name": "Isabela",
       "number": "345621324"
@@ -26,14 +21,9 @@
       "id": 7
     },
     {
-      "name": "osama",
-      "number": "654321",
-      "id": 8
-    },
-    {
-      "name": "good",
-      "number": "90",
-      "id": 9
+      "name": "mansoor",
+      "number": "8828674110",
+      "id": 10
     }
   ]
 }
