@@ -45,6 +45,24 @@ export const userReducer = (state = intialState, action) => {
         error: action.error,
       });
 
+    case actionType.DELETE_DATA_INIT:
+      return (state = {
+        ...state,
+        isLoading: true,
+      });
+    case actionType.DELETE_DATA_SUCCESS:
+      return (state = {
+        ...state,
+
+        isLoading: false,
+      });
+    case actionType.DELETE_DATA_FAILURE:
+      return (state = {
+        ...state,
+        isLoading: false,
+        error: action.error,
+      });
+
     default:
       return state;
   }

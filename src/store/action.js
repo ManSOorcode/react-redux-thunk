@@ -53,7 +53,7 @@ export const postSucess = (data) => {
 
 export const postFailure = (error) => {
   return {
-    type: actionTypes.FETCH_DATA_FAILURE,
+    type: actionTypes.POST_DATA_FAILURE,
     payload: error,
   };
 };
@@ -81,21 +81,36 @@ export const postUserData = (contacts) => {
   };
 };
 
+export const deleteInit = () => {
+  return {
+    type: actionTypes.DELETE_DATA_INIT,
+  };
+};
+export const deleteSucess = (data) => {
+  return {
+    type: actionTypes.DELETE_DATA_SUCCESS,
+    payload: data,
+  };
+};
+
+export const deleteFailure = (error) => {
+  return {
+    type: actionTypes.DELETE_DATA_FAILURE,
+    payload: error,
+  };
+};
+
 export const deleteUserData = (id) => {
   return async (dispatch) => {
-    dispatch(fetchInit());
+    dispatch(deleteInit());
     try {
       const response = await fetch(`http://localhost:3000/contacts/${id}`, {
         method: "DELETE",
       });
-      const newResponse = await fetch("http://localhost:3000/contacts");
-      const data = await newResponse.json();
 
-      console.log(data);
-
-      dispatch(fetchSucess(data));
+      dispatch(fetchUserData());
     } catch (error) {
-      dispatch(fetchFailure(error));
+      dispatch(deleteFailure(error));
     }
   };
 };
