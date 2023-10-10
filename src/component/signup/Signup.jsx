@@ -10,16 +10,11 @@ const Signup = () => {
   const emailInputHandler = useRef("");
   const passInputHandler = useRef("");
   const [userDetails, setUserDetails] = useState({
-    // name: "",
     email: "",
     password: "",
   });
 
-  const [errorMsg, seterrorMsg] = useState("");
-
-  // const datahandler = (key, value) => {
-  //   return setUserDetails((prev) => ({ ...prev, [key]: value }));
-  // };
+  // const [errorMsg, seterrorMsg] = useState("");
 
   let formValid = false;
 
@@ -32,50 +27,10 @@ const Signup = () => {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    // createUserWithEmailAndPassword(
-    //   auth,
-    //   userDetails.email,
-    //   userDetails.password
-    // )
-    //   .then(async (res) => {
-    //     console.log(res);
-    //     const user = res.user;
-
-    //     //function(userDeatil, {whatdetail you want to update})
-    //     await updateProfile(user, { displayName: user.name });
-
-    //     navigate("/");
-    //     console.log(res);
-    //   })
-    //   .catch((err) => {
-    //     // seterrorMsg(err.message);
-    //     console.log(err.message);
-    //   });
-    // try {
-    //   console.log(res);
-    //   const res = await createUserWithEmailAndPassword(
-    //     auth,
-    //     userDetails.email,
-    //     userDetails.password
-    //   );
-
-    //   const user = res.user;
-
-    //   //function(userDeatil, {whatdetail you want to update})
-    //   await updateProfile(user, { displayName: user.name });
-
-    //   navigate("/");
-    //   console.log(res);
-    // } catch (err) {
-    //   seterrorMsg(err.message);
-    //   // console.log(err.message);
-    // }
-
     const emailInput = emailInputHandler.current.value;
     const passInput = passInputHandler.current.value;
 
     const key = "AIzaSyDATc-65KdaRxfBWjCsZI1NsMqTIRFuaJM";
-    // console.log(userDetails);
 
     console.log(emailInput, passInput);
 
@@ -105,32 +60,10 @@ const Signup = () => {
 
   return (
     <>
-      {/* <li>
-        <Link to="login">click to login</Link>
-      </li> */}
-
       <div>
         <div>SingUp</div>
         <form onSubmit={submitHandler}>
           <div>
-            {/* <InputControl
-              onChange={(e) => datahandler("name", e.target)}
-              label="name"
-              placeholder="Write your name"
-            /> */}
-            {/* <InputControl
-              // onChange={(e) => datahandler("email", e.target)}
-              label="email"
-              placeholder="Write your email"
-              ref={emailInputHandler}
-            />
-            <InputControl
-              // onChange={(e) => datahandler("password", e.target)}
-              label="password"
-              placeholder="type strong Password"
-              ref={passInputHandler}
-            /> */}
-
             <label>Email</label>
             <input
               type="text"
@@ -144,8 +77,7 @@ const Signup = () => {
               ref={passInputHandler}
             />
           </div>
-          {/* <p>{errorMsg}</p> */}
-          {/* <button disabled={!formValid} type="submit"> */}
+
           <button type="submit">singup</button>
         </form>
         <p>

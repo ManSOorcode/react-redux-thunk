@@ -2,8 +2,8 @@
 import { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 // import InputControl from "../inputControl/InputControl";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../auth/firebaseAuth";
+// import { signInWithEmailAndPassword } from "firebase/auth";
+// import { auth } from "../auth/firebaseAuth";
 
 const Login = () => {
   const emailInputHandler = useRef("");
@@ -13,7 +13,7 @@ const Login = () => {
     password: "",
   });
 
-  const [errorMsg, seterrorMsg] = useState("");
+  // const [errorMsg, seterrorMsg] = useState("");
 
   const datahandler = (key, value) => {
     return setUserDetails((prev) => ({ ...prev, [key]: value }));
@@ -28,18 +28,6 @@ const Login = () => {
   const navigate = useNavigate();
   const submitHandler = async (e) => {
     e.preventDefault();
-    // try {
-    //   const res = await signInWithEmailAndPassword(
-    //     auth,
-    //     userDetails.email,
-    //     userDetails.password
-    //   );
-
-    //   navigate("/form");
-    //   console.log(res);
-    // } catch (err) {
-    //   console.log(err.message);
-    // }
 
     const emailInput = emailInputHandler.current.value;
     const passInput = passInputHandler.current.value;
@@ -68,7 +56,6 @@ const Login = () => {
         if (res.ok) navigate("/form");
       })
       .catch((err) => {
-        //     // seterrorMsg(err.message);
         console.log(err.message);
       });
   };
@@ -77,17 +64,6 @@ const Login = () => {
       <div>Login</div>
       <form onSubmit={submitHandler}>
         <div>
-          {/* <InputControl
-            label="email"
-            placeholder="Write your correct email"
-            onChange={(e) => datahandler("email", e.target)}
-          />
-          <InputControl
-            label="password"
-            placeholder="type right Password"
-            onChange={(e) => datahandler("password", e.target)}
-          /> */}
-
           <label>Email</label>
           <input
             type="text"
@@ -101,11 +77,7 @@ const Login = () => {
             ref={passInputHandler}
           />
         </div>
-        {/* <p>{errorMsg}</p> */}
-        {/* <button disabled={!formValid} type="submit"> */}
 
-        {/* <p>{errorMsg}</p> */}
-        {/* <button disabled={!formValid}> */}
         <button>Login</button>
       </form>
       <p>
