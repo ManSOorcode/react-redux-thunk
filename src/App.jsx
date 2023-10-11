@@ -17,8 +17,6 @@ function App() {
 
   const dispatch = useDispatch();
 
-  // console.log(result);
-
   useEffect(() => {
     dispatch(fetchUserData());
 
@@ -30,26 +28,12 @@ function App() {
     return () => unsubscribe();
   }, [dispatch]);
 
-  // return (
-  //   <>
-  //     <UserForm />
-  //     <UserData contacts={result} />
-  //   </>
-  // );
-
   return (
     <Routes>
       <Route path="/" element={<Dashboard name={userName} />} />
       <Route path="/login" element={<Login />} />
       <Route path="/singup" element={<Singup />} />
-      <Route
-        path="/form"
-        element={
-          <>
-            <UserForm />
-          </>
-        }
-      />
+      <Route path="/form" element={<UserForm />} />
       <Route path="/data" element={<UserData contacts={result} />} />
     </Routes>
   );

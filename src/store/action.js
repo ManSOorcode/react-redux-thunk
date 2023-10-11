@@ -22,7 +22,6 @@ export const fetchFailure = (error) => {
   };
 };
 
-//mansoor-contact-app-default-rtdb.firebaseio.com/name.json
 export const fetchUserData = () => {
   return async (dispatch) => {
     dispatch(fetchInit());
@@ -81,6 +80,7 @@ export const postUserData = (contacts) => {
   };
 };
 
+//delete action
 export const deleteInit = () => {
   return {
     type: actionTypes.DELETE_DATA_INIT,
