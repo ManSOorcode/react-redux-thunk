@@ -16,7 +16,7 @@ const Login = () => {
     const emailInput = emailInputHandler.current.value;
     const passInput = passInputHandler.current.value;
 
-    const key = "AIzaSyDATc-65KdaRxfBWjCsZI1NsMqTIRFuaJM";
+    // const key = "AIzaSyDATc-65KdaRxfBWjCsZI1NsMqTIRFuaJM";
 
     console.log(emailInput, passInput);
 
@@ -34,9 +34,11 @@ const Login = () => {
       }
     )
       .then((res) => {
-        console.log(res);
-        if (res.ok) navigate("/form");
+        res.json();
+        // if (res.ok) navigate("/form");
+        if (res.ok) navigate("/data");
       })
+      .then((data) => console.log(data))
       .catch((err) => {
         console.log(err.message);
       });

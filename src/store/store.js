@@ -4,6 +4,6 @@ import thunk from "redux-thunk";
 import { userReducer } from "./reducer";
 import { composeWithDevTools } from "@redux-devtools/extension";
 export const store = configureStore(
-  { reducer: userReducer },
+  { reducer: { universal: userReducer } },
   composeWithDevTools(applyMiddleware(thunk))
 );

@@ -28,10 +28,16 @@ export const fetchUserData = () => {
     try {
       const response = await fetch("http://localhost:3000/contacts");
       const data = await response.json();
-      // console.log(data);
       dispatch(fetchSucess(data));
     } catch (error) {
-      dispatch(fetchFailure(error));
+      dispatch(
+        fetchFailure(
+          error.message.slice(
+            0,
+            error.message.indexOf("o", error.message.indexOf("o") + 1)
+          )
+        )
+      );
     }
   };
 };
@@ -61,7 +67,6 @@ export const postUserData = (contacts) => {
   return async (dispatch) => {
     dispatch(postInit());
     try {
-      // const response = await fetch("https://dummyjson.com/products");
       const response = await fetch("http://localhost:3000/contacts", {
         method: "POST",
         headers: {
@@ -70,12 +75,20 @@ export const postUserData = (contacts) => {
         body: JSON.stringify(contacts),
       });
       const data = await response.json();
-
-      // console.log(data.response.json());
       console.log(data);
       dispatch(postSucess(data));
     } catch (error) {
-      dispatch(postFailure(error));
+      console.log(error.message);
+      dispatch(
+        postFailure(
+          error.message
+            .slice(
+              0,
+              error.message.indexOf("o", error.message.indexOf("o") + 1)
+            )
+            .replace("fetch", "post")
+        )
+      );
     }
   };
 };
@@ -107,10 +120,81 @@ export const deleteUserData = (id) => {
       const response = await fetch(`http://localhost:3000/contacts/${id}`, {
         method: "DELETE",
       });
-
+      if (!response.ok) {
+        throw new Error("Failed to Delete contact");
+      }
       dispatch(fetchUserData());
     } catch (error) {
-      dispatch(deleteFailure(error));
+      dispatch(
+        deleteFailure(
+          error.message
+          // .slice(
+          //   0,
+          //   error.message.indexOf("o", error.message.indexOf("o") + 1)
+          // )
+          // .replace("fetch", "delete")
+        )
+      );
+    }
+  };
+};
+
+export const editeFailure = (data) => {
+  return {
+    type: actionTypes.EDITE_DATA_SEND,
+    payload: data,
+  };
+};
+
+export const putInit = () => {
+  return {
+    type: actionTypes.POST_DATA_INIT,
+  };
+};
+
+export const putSuccess = () => {
+  return {
+    type: actionTypes.POST_DATA_SUCCESS,
+  };
+};
+
+export const putFailure = (error) => {
+  return {
+    type: actionTypes.PUT_DATA_FAILURE,
+    payload: error,
+  };
+};
+
+export const putUserData = (contact) => {
+  console.log(contact.id);
+  console.log(contact);
+  return async (dispatch) => {
+    dispatch(putInit());
+    try {
+      const response = await fetch(
+        `http://localhost:3000/contacts/${contact.id}`,
+        {
+          method: "PUT",
+          body: JSON.stringify({
+            id: contact.id,
+            name: contact.name,
+            number: contact.number,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      // dispatch(putSuccess());
+      // const data = await response.json();
+      // console.log(response);
+      // console.log(data);
+      if (!response.ok) {
+        throw new Error("Failed to update contact");
+      }
+      dispatch(fetchUserData());
+    } catch (error) {
+      dispatch(putFailure(error.message));
     }
   };
 };
