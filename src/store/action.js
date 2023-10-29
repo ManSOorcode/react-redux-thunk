@@ -2,8 +2,8 @@
 /* eslint-disable no-undef */
 import * as actionTypes from "./actionTypes";
 
-const apiUrl =
-  import.meta.env.VITE_REACT_APP_API_URL || "http://localhost:3000";
+// const apiUrl =
+//   import.meta.env.VITE_REACT_APP_API_URL || "http://localhost:3000";
 
 //fetch action
 export const fetchInit = () => {
@@ -29,7 +29,8 @@ export const fetchUserData = () => {
   return async (dispatch) => {
     dispatch(fetchInit());
     try {
-      const response = await fetch(`${apiUrl}/contacts`);
+      // const response = await fetch(`${apiUrl}/contacts`);
+      const response = await fetch(`http://localhost:3000/contacts`);
       const data = await response.json();
       dispatch(fetchSucess(data));
     } catch (error) {
@@ -70,7 +71,8 @@ export const postUserData = (contacts) => {
   return async (dispatch) => {
     dispatch(postInit());
     try {
-      const response = await fetch(`${apiUrl}/contacts`, {
+      // const response = await fetch(`${apiUrl}/contacts`, {
+      const response = await fetch(`http://localhost:3000/contacts`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -120,7 +122,8 @@ export const deleteUserData = (id) => {
   return async (dispatch) => {
     dispatch(deleteInit());
     try {
-      const response = await fetch(`${apiUrl}/contacts/${id}`, {
+      // const response = await fetch(`${apiUrl}/contacts/${id}`, {
+      const response = await fetch(`http://localhost:3000/contacts/${id}`, {
         method: "DELETE",
       });
       if (!response.ok) {
@@ -174,17 +177,21 @@ export const putUserData = (contact) => {
   return async (dispatch) => {
     dispatch(putInit());
     try {
-      const response = await fetch(`${apiUrl}/contacts/${contact.id}`, {
-        method: "PUT",
-        body: JSON.stringify({
-          id: contact.id,
-          name: contact.name,
-          number: contact.number,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      // const response = await fetch(`${apiUrl}/contacts/${contact.id}`, {
+      const response = await fetch(
+        `http://localhost:3000/contacts/${contact.id}`,
+        {
+          method: "PUT",
+          body: JSON.stringify({
+            id: contact.id,
+            name: contact.name,
+            number: contact.number,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       // dispatch(putSuccess());
       // const data = await response.json();
       // console.log(response);
