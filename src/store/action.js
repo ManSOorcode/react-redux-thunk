@@ -30,7 +30,10 @@ export const fetchUserData = () => {
     dispatch(fetchInit());
     try {
       // const response = await fetch(`${apiUrl}/contacts`);
-      const response = await fetch(`http://localhost:3000/contacts`);
+      const response = await fetch(
+        // `http://localhost:3000/contacts`
+        `/api/contacts`
+      );
       const data = await response.json();
       dispatch(fetchSucess(data));
     } catch (error) {
@@ -72,13 +75,17 @@ export const postUserData = (contacts) => {
     dispatch(postInit());
     try {
       // const response = await fetch(`${apiUrl}/contacts`, {
-      const response = await fetch(`http://localhost:3000/contacts`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(contacts),
-      });
+      const response = await fetch(
+        // `http://localhost:3000/contacts`
+        `/api/contacts`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(contacts),
+        }
+      );
       const data = await response.json();
       console.log(data);
       dispatch(postSucess(data));
@@ -123,9 +130,13 @@ export const deleteUserData = (id) => {
     dispatch(deleteInit());
     try {
       // const response = await fetch(`${apiUrl}/contacts/${id}`, {
-      const response = await fetch(`http://localhost:3000/contacts/${id}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        // `http://localhost:3000/contacts/${id}`
+        `/api/contacts/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
       if (!response.ok) {
         throw new Error("Failed to Delete contact");
       }
@@ -179,7 +190,8 @@ export const putUserData = (contact) => {
     try {
       // const response = await fetch(`${apiUrl}/contacts/${contact.id}`, {
       const response = await fetch(
-        `http://localhost:3000/contacts/${contact.id}`,
+        // `http://localhost:3000/contacts/${contact.id}`,
+        `/api/contacts/${contact.id}`,
         {
           method: "PUT",
           body: JSON.stringify({
