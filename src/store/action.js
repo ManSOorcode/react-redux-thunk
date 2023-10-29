@@ -91,16 +91,16 @@ export const postUserData = (contacts) => {
       dispatch(postSucess(data));
     } catch (error) {
       console.log(error.message);
-      dispatch(
-        postFailure(
-          error.message
-            .slice(
-              0,
-              error.message.indexOf("o", error.message.indexOf("o") + 1)
-            )
-            .replace("fetch", "post")
-        )
-      );
+      // dispatch(
+      //   postFailure(
+      //     error.message
+      //       .slice(
+      //         0,
+      //         error.message.indexOf("o", error.message.indexOf("o") + 1)
+      //       )
+      //       .replace("fetch", "post")
+      //   )
+      // );
     }
   };
 };
